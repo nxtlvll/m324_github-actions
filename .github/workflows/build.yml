@@ -20,3 +20,6 @@ jobs:
 
       - name: Build the project
         run: npm run build
+
+      - name: Check build folder
+        run: ls -la build
