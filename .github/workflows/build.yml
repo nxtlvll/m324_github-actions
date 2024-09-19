@@ -1,4 +1,4 @@
-name: Continuous Deployment
+name: CI Pipeline
 
 on:
   push:
@@ -14,12 +14,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
 
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test
+
       - name: Build the project
         run: npm run build
 
-      - name: Check build folder
-        run: ls -la build
+      - name: Deploy application
+        run: echo "Deploying application..."
